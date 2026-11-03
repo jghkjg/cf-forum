@@ -1,0 +1,19 @@
+name = "cf-forum"
+main = "dist/index.js"
+compatibility_date = "2026-10-01"
+
+# 一键部署时 Cloudflare 会自动创建 D1 并回填 database_id
+# 手动部署时把下面改成你自己的 database_id
+[[d1_databases]]
+binding = "DB"
+database_name = "forum-db"
+database_id = "3291fdd6-3e60-45ab-a1f4-823d76af7851"
+migrations_dir = "migrations"
+
+[vars]
+TURNSTILE_SITE_KEY = "0x4AAAAAAFx-tDpY_E09MUwg"
+FROM_EMAIL = "mengyu@ooooc.kdns.fr"
+
+# AI 每日精选定时任务（每 6 小时一轮；还需把 AI_API_KEY 设为 Worker Secret）
+[triggers]
+crons = ["23 */6 * * *"]
